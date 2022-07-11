@@ -76,6 +76,8 @@ export default {
 main {
   background-color: $dark-color;
   color: white;
+  height: calc(100vh - 100px);
+  overflow: auto;
 }
 .grid {
   width: 80%;
