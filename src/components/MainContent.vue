@@ -1,10 +1,11 @@
 <template>
   <main>
     <div class="grid">
+      <GenreSelection @genreChanged="filterByGenre" />
       <div class="row">
         <div
           class="col-12 col-md-6 col-lg-3 my-5"
-          v-for="(album, index) in albumList"
+          v-for="(album, index) in filteredAlbumList"
           :key="index"
         >
           <div class="text-center album-card">
@@ -21,13 +22,32 @@
 
 <script>
 import axios from "axios";
+import GenreSelection from "./GenreSelection.vue";
+
 export default {
   name: "MainContent",
+  components: {
+    GenreSelection,
+  },
   data() {
     return {
       url: "https://flynn.boolean.careers/exercises/api/array/music",
       albumList: [],
+      genreToFilter: "all",
     };
+  },
+  computed: {
+    filteredAlbumList() {
+      if (this.genreToFilter == "all") {
+        return this.albumList;
+      } else {
+        return this.albumList.filter((item) => {
+          return item.genre
+            .toLowerCase()
+            .includes(this.genreToFilter.toLowerCase());
+        });
+      }
+    },
   },
   created() {
     this.getAlbum();
@@ -42,6 +62,10 @@ export default {
         .catch((err) => {
           console.log("Error", err);
         });
+    },
+    filterByGenre(filterWord) {
+      this.genreToFilter = filterWord;
+      console.log(this.genreToFilter);
     },
   },
 };
