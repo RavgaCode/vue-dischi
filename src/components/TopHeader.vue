@@ -1,6 +1,6 @@
 <template>
   <header>
-    <img src="../assets/logo-spotify.jpg" alt="logo spotify" />
+    <img src="../assets/logo-small.svg" alt="logo spotify" />
   </header>
 </template>
 
@@ -16,8 +16,11 @@ export default {
 header {
   background-color: $light-color;
   height: 100px;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
 }
 img {
-  max-height: 100%;
+  max-height: 80%;
 }
 </style>

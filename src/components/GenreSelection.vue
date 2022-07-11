@@ -20,7 +20,7 @@ export default {
   name: "GenreSelection",
   data() {
     return {
-      genreToFilter: "",
+      genreToFilter: "all",
     };
   },
 };
